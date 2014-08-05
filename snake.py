@@ -21,7 +21,7 @@ sprites_group = pygame.sprite.Group()
 apple = Apple()
 
 # sync movement
-pygame.time.set_timer(TIMER_EVENT, 200)
+pygame.time.set_timer(TIMER_EVENT, 100)
 
 # game loop
 while True:
@@ -55,6 +55,11 @@ while True:
     # render window
     sprites_group.empty()
     window.fill((0, 0, 0))
+
+    # render grid
+    for i, j in zip(xrange(COLS), xrange(ROWS)):
+        pygame.draw.line(window, GRID_COLOR, (i*CELL_SIZE, 0), (i*CELL_SIZE, ROWS*CELL_SIZE))
+        pygame.draw.line(window, GRID_COLOR, (0, i*CELL_SIZE), (COLS*CELL_SIZE, i*CELL_SIZE))
 
     # render snake sprite
     snake_head_sprite = Snake_Part(snake_coords[0])
